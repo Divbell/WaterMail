@@ -44,7 +44,7 @@ class Template
     {
         extract($this->_variables);
 
-        if(file_exists(APP . DS . 'view' . DS , $this->_controller . DS . 'header.php'))
+        if(file_exists(APP . DS . 'view' . DS . $this->_controller . DS . 'header.php'))
             include(APP . DS . 'view' . DS . $this->_controller . DS . 'header.php');
         else include(APP . DS . 'view' . DS . 'layout' . DS . 'header.php');
 

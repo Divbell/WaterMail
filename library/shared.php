@@ -48,21 +48,25 @@ function callHook()
 {
     global $url;
 
-    $urlArray = array();
     $urlArray = explode("/", $url);
 
     $controller = $urlArray[0];
-    array_shift($urlArray);
-    $action = $urlArray[0];
-    array_shift($urlArray);
-    $queryString = $urlArray;
+    if($controller != '') {
+        array_shift($urlArray);
+        $action = $urlArray[0];
+        if($action == '') $action = 'index';
+        array_shift($urlArray);
+        $queryString = $urlArray;
+    } else $action = 'index';
 
     $controllerName = $controller;
     $controller = ucwords($controller);
     $model = rtrim($controller, 's');
     $controller .= 'Controller';
+    $actionName = $action;
+    $action .= 'Action';
 
-    $dispatch = new $controller($model, $controllerName, $action);
+    $dispatch = new $controller($model, $controllerName, $actionName);
 
     if((int)method_exists($controller, $action)) call_user_func_array(array($dispatch, $action), $queryString);
     else throw new Exception("An action like that one doesn't exists!");
@@ -76,7 +80,7 @@ function __autoload($className)
         require_once(APP . DS . 'controller' . DS . $className . '.class.php');
     else if(file_exists(APP . DS . 'model' . DS . strtolower($className) . '.class.php'))
         require_once(APP . DS . 'model' . DS . strtolower($className) . '.class.php');
-    else throw new Exception("This file doesn't exists!");
+    else throw new Exception("This controller or model doesn't exists!");
 }
 
 setReporting();

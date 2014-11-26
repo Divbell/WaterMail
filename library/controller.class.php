@@ -6,22 +6,22 @@
 class Controller
 {
     /**
-     * @used model
+     * used model
      * @var
      */
     protected $_model;
     /**
-     * @current controller
+     * current controller
      * @var
      */
     protected $_controller;
     /**
-     * @chosen action
+     * chosen action
      * @var
      */
     protected $_action;
     /**
-     * @template to render
+     * template to render
      * @var
      */
     protected $_template;
@@ -50,11 +50,21 @@ class Controller
     }
 
     /**
-     * @render the page after destroying the object
+     * render the page after destroying the object
      */
-    public function __destroy()
+
+    public function render()
     {
         $this->_template->render();
     }
 
+    /**
+     * redirect to passed url
+     * @param $url
+     */
+    public function redirect($url)
+    {
+        header("Location: " . $url);
+        exit;
+    }
 }
