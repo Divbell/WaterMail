@@ -6,13 +6,18 @@
  * @copyright 2014 Michał Huras
  */
 
-error_reporting(E_ALL);
-
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(dirname(__FILE__)));
 define('LIBRARY', ROOT . DS . 'library');
 define('APP', ROOT . DS . 'app');
 
+require_once(LIBRARY . DS . 'Autoloader.php');
+
+$autoloader = library\Autoloader::getInstance();
+
 $url = $_GET['url'];
 
-require_once(LIBRARY . DS . 'bootstrap.php');
+$router = new library\Router($url);
+
+$router->getRoute();
+$router->dispatch();
