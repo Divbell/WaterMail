@@ -3,7 +3,7 @@
  * A base Controller class for Watermail
  */
 
-namespace library;
+namespace library\MVC;
 
 class Controller
 {
@@ -39,7 +39,7 @@ class Controller
         $this->_controller = $controller;
         $this->_action = $action;
 
-        //$this->_template = new Template($this->_controller, $this->_action);
+     //   $this->_template = new Template($this->_controller, $this->_action);
     }
 
     /**

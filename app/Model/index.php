@@ -5,7 +5,7 @@
 
 namespace app\Model;
 
-use library\Model as Model;
+use library\MVC\Model as Model;
 
 class ExampleModel extends Model {
 

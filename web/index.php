@@ -15,9 +15,5 @@ require_once(LIBRARY . DS . 'Autoloader.php');
 
 $autoloader = library\Autoloader::getInstance();
 
-$url = $_GET['url'];
-
-$router = new library\Router($url);
-
-$router->getRoute();
-$router->dispatch();
+$FrontController = new library\FrontController(new library\Request\HttpRequest());
+$FrontController->run();

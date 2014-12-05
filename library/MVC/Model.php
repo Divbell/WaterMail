@@ -3,7 +3,7 @@
  * A base Model class for Watermail
  */
 
-namespace library;
+namespace library\MVC;
 
 class Model
 {
@@ -18,5 +18,10 @@ class Model
     public function __construct()
     {
 
+    }
+
+    public function checkModel()
+    {
+        echo "model works";
     }
 }

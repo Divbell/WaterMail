@@ -4,7 +4,7 @@
  */
 namespace app\Controller;
 
-use library\Controller as WebController;
+use library\MVC\Controller as WebController;
 
 class IndexController extends WebController
 {

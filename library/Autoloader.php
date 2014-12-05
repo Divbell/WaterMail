@@ -5,7 +5,6 @@
 
 namespace library;
 
-use library\Routing;
 use library\Exceptions;
 
 class Autoloader

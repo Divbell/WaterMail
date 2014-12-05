@@ -3,7 +3,7 @@
  * a template class for Watermail
  */
 
-namespace library;
+namespace library\MVC;
 
 class Template
 {
@@ -46,14 +46,14 @@ class Template
     {
         extract($this->_variables);
 
-        if(file_exists(APP . DS . 'view' . DS . strtolower($this->_controller) . DS . 'header.php'))
-            include(APP . DS . 'view' . DS . strtolower($this->_controller) . DS . 'header.php');
-        else include(APP . DS . 'view' . DS . 'layout' . DS . 'header.php');
+        if(file_exists(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . 'header.php'))
+            include(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . 'header.php');
+        else include(APP . DS . 'View' . DS . 'layout' . DS . 'header.php');
 
-        include(APP . DS . 'view' . DS . strtolower($this->_controller) . DS . $this->_action . '.php');
+        include(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . $this->_action . '.php');
 
-        if(file_exists(APP . DS . 'view' . DS . strtolower($this->_controller) . DS . 'footer.php'))
-            include(APP . DS . 'view' . DS . strtolower($this->_controller) . DS . 'footer.php');
-        else include(APP . DS . 'view' . DS . 'layout' . DS . 'footer.php');
+        if(file_exists(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . 'footer.php'))
+            include(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . 'footer.php');
+        else include(APP . DS . 'View' . DS . 'layout' . DS . 'footer.php');
     }
 }
