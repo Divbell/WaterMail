@@ -4,7 +4,7 @@
  */
 
 return array(
-    'index' => array(
+    '/' => array(
         'controller'    => 'index',
         'action'        => 'index'
     )

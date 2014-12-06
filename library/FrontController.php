@@ -7,14 +7,15 @@ namespace library;
 
 use library\Interfaces\FrontControllerInterface as FrontControllerInterface;
 use library\Request\HttpRequest;
+use library\Routing\Router;
 
 Class FrontController implements FrontControllerInterface
 {
     /**
      * const, that contains default controller's and action's name
      */
-    const DEFAULT_CONTROLLER = 'IndexController';
-    const DEFAULT_ACTION = 'indexAction';
+    const DEFAULT_CONTROLLER = 'index';
+    const DEFAULT_ACTION = 'index';
 
     /**
      * @var
@@ -32,38 +33,20 @@ Class FrontController implements FrontControllerInterface
     private $_params = array();
 
     /**
-     * @var string
+     * @var
      */
-    private $_basePath = ROOT;
+    private $_router;
 
     /**
-     * @param HttpRequest $request
+     *
      */
-    public function __construct(HttpRequest $request)
+    public function __construct()
     {
-        $this->parseUri($request);
-    }
+        $this->_router = new Router();
 
-
-    private function parseUri(HttpRequest $request)
-    {
-        $path = trim(parse_url($request->getUri(), PHP_URL_PATH), '/');
-
-        var_dump($path);
-        $pathData = explode("/", $path, 3);
-        var_dump($pathData);
-        $controller = $pathData[0];
-        $action = $pathData[1];
-        $params = explode("/", $pathData[2]);
-
-        if(isset($controller))
-            $this->setController($controller);
-        else $this->_controller = self::DEFAULT_CONTROLLER;
-        if(isset($action))
-            $this->setAction($action);
-        else $this->_action = self::DEFAULT_ACTION;
-        if(isset($params))
-            $this->setParams($params);
+        $route = $this->_router->route(new HttpRequest());
+        $this->setController($route->getControllerName());
+        $this->setAction($route->getActionName());
     }
 
     /**

@@ -12,8 +12,7 @@ define('LIBRARY', ROOT . DS . 'library');
 define('APP', ROOT . DS . 'app');
 
 require_once(LIBRARY . DS . 'Autoloader.php');
-
 $autoloader = library\Autoloader::getInstance();
 
-$FrontController = new library\FrontController(new library\Request\HttpRequest());
+$FrontController = new library\FrontController();
 $FrontController->run();
