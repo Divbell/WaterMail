@@ -1,11 +1,13 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: michal
- * Date: 26.11.14
- * Time: 23:40
+ * A page header file
  */
-
 ?>
 
-<p>header</p>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <p>header</p>
+    </body>

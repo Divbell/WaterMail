@@ -14,7 +14,7 @@ class ConfigReader
      * path of current using config file
      * @var string
      */
-    private $_filePath = '/';
+    private $_filePath = ROOT;
 
     /**
      * name of current using config file
@@ -46,6 +46,12 @@ class ConfigReader
         return self::$_instance;
     }
 
+    /**
+     * get a config from file
+     * @param $fileName
+     * @return mixed
+     * @throws \Exception
+     */
     public function getConfig($fileName)
     {
         $filePath = ROOT . DS . 'config' . DS . $fileName . '.php';
@@ -53,7 +59,8 @@ class ConfigReader
             $this->_filePath = $filePath;
             $this->_fileName = $fileName;
 
-            return require($filePath);
+            $this->_configs[$this->_fileName] = require($filePath);
+            return $this->_configs[$this->_fileName];
         } else
             throw new \Exception("This config file ($filePath) doesn't exists!");
     }

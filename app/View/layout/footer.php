@@ -1,7 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: michal
- * Date: 26.11.14
- * Time: 23:41
+ * A page footer file
  */
+
+?>
+
+<p>FOOTER</p>
+</html>

@@ -10,7 +10,7 @@ class IndexController extends WebController
 {
     public function indexAction()
     {
+        $this->render();
         echo "hello!";
-//        $this->render();
     }
 }
