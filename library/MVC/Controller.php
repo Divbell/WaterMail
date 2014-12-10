@@ -29,15 +29,14 @@ class Controller
     protected $_template;
 
     /**
-     * @param $model
-     * @param $controller
-     * @param $action
+     * @param array $controllerData
      */
-    public function __construct($model, $controller, $action)
+    public function __construct($controllerData = array())
     {
-        $this->_model = $model;
-        $this->_controller = $controller;
-        $this->_action = $action;
+        var_dump($controllerData);
+        $this->_model = $controllerData["model"];
+        $this->_controller = $controllerData["controller"];
+        $this->_action = $controllerData["params"];
 
         $this->_template = new Template($this->_controller, $this->_action);
     }

@@ -16,6 +16,7 @@ Class FrontController implements FrontControllerInterface
      */
     const DEFAULT_CONTROLLER = 'index';
     const DEFAULT_ACTION = 'index';
+    const CONTROLLER_DIRECTORY = "app\\Controller\\";
 
     /**
      * @var
@@ -54,7 +55,7 @@ Class FrontController implements FrontControllerInterface
      */
     public function setController($controller)
     {
-        $controller = 'app\\Controller\\' . ucfirst(strtolower($controller)) . 'Controller';
+        $controller = self::CONTROLLER_DIRECTORY . ucfirst(strtolower($controller)) . 'Controller';
         if(!class_exists($controller))
             throw new \InvalidArgumentException("Controller $controller doesn't exists!");
         $this->_controller = $controller;
@@ -85,6 +86,7 @@ Class FrontController implements FrontControllerInterface
      */
     public function run()
     {
+
         call_user_func_array(array(new $this->_controller, $this->_action), $this->_params);
     }
 

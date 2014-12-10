@@ -44,7 +44,8 @@ class Template
      */
     public function render()
     {
-        extract($this->_variables);
+        var_dump($this->_controller);
+        var_dump($this->_action);
 
         if(file_exists(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . 'header.php'))
             include(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . 'header.php');
