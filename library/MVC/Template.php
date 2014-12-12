@@ -5,6 +5,8 @@
 
 namespace library\MVC;
 
+use library\Exceptions\InvalidKeyException as InvalidKeyException;
+
 class Template
 {
     /**
@@ -40,21 +42,30 @@ class Template
     }
 
     /**
+     * @param $key
+     * @return mixed
+     * @throws InvalidKeyException
+     */
+    public function __get($key)
+    {
+        if(isset($this->_variables[$key]))
+            return $this->_variables[$key];
+        else
+            throw new InvalidKeyException("Variable with key $key doesn't exists!");
+    }
+
+    /**
      * render a page
      */
     public function render()
     {
-        var_dump($this->_controller);
-        var_dump($this->_action);
+        if(file_exists(APP . DS . 'View' . DS . 'layout' . DS . 'navigation.php'))
+            $navigation = APP . DS . 'View' . DS . 'layout' . DS . 'navigation.php';
+        if(file_exists(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . $this->_action . '.php'))
+            $content = APP . DS . 'View' . DS . strtolower($this->_controller) . DS . $this->_action . '.php';
+        if(file_exists(APP . DS . 'View' . DS . 'layout' . DS . 'footer.php'))
+            $footer = APP . DS . 'View' . DS . 'layout' . DS . 'footer.php';
 
-        if(file_exists(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . 'header.php'))
-            include(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . 'header.php');
-        else include(APP . DS . 'View' . DS . 'layout' . DS . 'header.php');
-
-        include(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . $this->_action . '.php');
-
-        if(file_exists(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . 'footer.php'))
-            include(APP . DS . 'View' . DS . strtolower($this->_controller) . DS . 'footer.php');
-        else include(APP . DS . 'View' . DS . 'layout' . DS . 'footer.php');
+        include(APP . DS . 'View' . DS . 'index.php');
     }
 }

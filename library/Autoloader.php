@@ -53,7 +53,7 @@ class Autoloader
      */
     public function autoload($className)
     {
-        echo $className . '<br />';
+        if(SHOW_LOADED_CLASSES) echo $className . '<br />';
         $fileName = ROOT . DS . str_replace('\\', DS, $className) . '.php';
 
         if(!isset($this->_loaded[$className])) {

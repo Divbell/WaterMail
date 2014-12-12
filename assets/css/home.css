@@ -1,0 +1,12 @@
+body {
+  background: url(/assets/img/main/main_bg.png);
+}
+.main-page {
+  max-width: 1060px;
+  margin: 0 auto;
+  background-color: #f1f0ff;
+}
+.navbar {
+  width: 100%;
+  background-color: #8c489f;
+}

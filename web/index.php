@@ -10,6 +10,7 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(dirname(__FILE__)));
 define('LIBRARY', ROOT . DS . 'library');
 define('APP', ROOT . DS . 'app');
+define('SHOW_LOADED_CLASSES', false);
 
 require_once(LIBRARY . DS . 'Autoloader.php');
 $autoloader = library\Autoloader::getInstance();

@@ -46,8 +46,16 @@ Class FrontController implements FrontControllerInterface
         $this->_router = new Router();
 
         $route = $this->_router->route(new HttpRequest());
-        $this->setController($route->getControllerName());
-        $this->setAction($route->getActionName());
+
+        $controllerName = $route->getControllerName();
+        $actionName = $route->getActionName();
+
+        $this->_params["model"] = $controllerName;
+        $this->_params["controller"] = $controllerName;
+        $this->_params["action"] = $actionName;
+
+        $this->setController($controllerName);
+        $this->setAction($actionName);
     }
 
     /**
@@ -87,7 +95,10 @@ Class FrontController implements FrontControllerInterface
     public function run()
     {
 
-        call_user_func_array(array(new $this->_controller, $this->_action), $this->_params);
+        $controller = new $this->_controller($this->_params);
+        $action = $this->_action;
+
+        $controller->$action();
     }
 
 }

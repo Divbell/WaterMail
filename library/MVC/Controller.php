@@ -33,10 +33,9 @@ class Controller
      */
     public function __construct($controllerData = array())
     {
-        var_dump($controllerData);
         $this->_model = $controllerData["model"];
         $this->_controller = $controllerData["controller"];
-        $this->_action = $controllerData["params"];
+        $this->_action = $controllerData["action"];
 
         $this->_template = new Template($this->_controller, $this->_action);
     }
