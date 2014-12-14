@@ -5,7 +5,7 @@
 
 return array(
     'dbname'    => 'watermail',
-    'dbuser'    => 'root',
-    'dbpass'    => 'fell3lcz',
+    'dbuser'    => 'user',
+    'dbpass'    => 'pass',
     'dbhost'    => 'localhost'
 );
